@@ -1,37 +1,35 @@
 package com.deloitte.demo.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "Department")
 public class Department {
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int department_id;
+    private int id;
 
-    @Column(name = "department_name")
+    @Column(name = "name")
     private String name;
 
     @Column(name = "location")
     private String location;
+    
+
+    public Department() {
+    }
 
     public Department(String name, String location) {
         this.name = name;
         this.location = location;
     }
 
-    public int getDepartment_id() {
-        return department_id;
+    public int getId() {
+        return id;
     }
 
-    public void setDepartment_id(int department_id) {
-        this.department_id = department_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -49,5 +47,11 @@ public class Department {
     public void setLocation(String location) {
         this.location = location;
     }
+
+    @Override
+    public String toString() {
+        return "Department [id=" + id + ", name=" + name + ", location=" + location + "]";
+    }
+    
 
 }
