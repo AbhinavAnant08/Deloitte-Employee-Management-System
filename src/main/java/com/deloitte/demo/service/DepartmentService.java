@@ -13,10 +13,10 @@ public class DepartmentService {
         return departmentRepository.addDepartment(department);
     }
 
-    // public Department updateDepartment(Department department) {
-    //     System.out.println(department.toString());
-    //     return departmentRepository.updateDepartment(department);
-    // }
+    public Department updateDepartment(int id, Department department) {
+        System.out.println(department.toString());
+        return departmentRepository.updateDepartment(id, department);
+    }
 
     // View all department
     public List<Department> getAllDepartment() {
@@ -25,5 +25,9 @@ public class DepartmentService {
 
     public List<Department> getDepartmentById(int Id) {
         return departmentRepository.getDepartmentById(Id);
+    }
+
+    public boolean deleteDepartmentById(int Id) {
+        return departmentRepository.deleteDepartmentById(Id);
     }
 }

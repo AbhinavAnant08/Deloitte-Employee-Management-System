@@ -81,30 +81,6 @@ public class EmployeeRepository {
 		return employeeDetails; // Return the updated employee details
 	}
 
-	public void deleteEmployee(int id) {
-		EntityManager entityManager = entityManagerFactory.createEntityManager();
-		EntityTransaction transaction = entityManager.getTransaction();
-		try {
-			transaction.begin();
-			Employee employee = entityManager.find(Employee.class, id);
-			if (employee != null) {
-				entityManager.remove(employee);
-				System.out.println("Deleted Employee: " + employee);
-			} else {
-				System.out.println("Employee not found with ID: " + id);
-			}
-			transaction.commit();
-		} catch (Exception e) {
-			if (transaction.isActive()) {
-				transaction.rollback();
-			}
-			e.printStackTrace();
-			throw e;
-		} finally {
-			entityManager.close();
-		}
-	}
-
 	public boolean deleteEmployeeById(int Id) {
 		EntityManager entityManager = entityManagerFactory.createEntityManager();
 		EntityTransaction transaction = entityManager.getTransaction();

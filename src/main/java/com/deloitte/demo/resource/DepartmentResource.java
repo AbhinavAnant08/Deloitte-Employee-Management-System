@@ -3,8 +3,10 @@ package com.deloitte.demo.resource;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -39,6 +41,37 @@ public class DepartmentResource {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Department> getDepartmentById(@PathParam("id") int Id) {
         return departmentService.getDepartmentById(Id);
+    }
+
+    @PUT
+    @Path("/updateDepartment/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    @Consumes(MediaType.APPLICATION_JSON)
+    public Response updateDepartment(@PathParam("id") int id, Department department) {
+        Department dep = departmentService.updateDepartment(id, department);
+        if (dep != null) {
+            return Response.status(Response.Status.OK).entity(dep)
+                    .header("message", "Department updated successfully!")
+                    .build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).entity("Department not found").build();
+        }
+    }
+
+    @DELETE
+    @Path("/DeleteDepartment/{id}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response deleteDepartmentById(@PathParam("id") int Id) {
+        if (departmentService.deleteDepartmentById(Id)) {
+            return Response.status(Response.Status.OK)
+                    .entity("Department with ID " + Id + " deleted successfully")
+                    .header("message", "Department deleted successfully!")
+                    .build();
+        } else
+            return Response.status(Response.Status.NOT_FOUND)
+                    .entity("Department with ID " + Id + " not found")
+                    .header("message", "No department found with ID " + Id)
+                    .build();
     }
 
 }

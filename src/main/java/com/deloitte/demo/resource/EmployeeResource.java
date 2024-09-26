@@ -71,7 +71,6 @@ public class EmployeeResource {
 	@Path("/DeleteEmployee/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteEmployeeById(@PathParam("id") int Id) {
-		System.out.println("Call to delete api");
 		if (empService.deleteEmployeeById(Id)) {
 			return Response.status(Response.Status.OK)
 					.entity("Employee with ID " + Id + " deleted successfully")
