@@ -8,7 +8,6 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Persistence;
 
 import com.deloitte.demo.model.Department;
-import com.deloitte.demo.model.Employee;
 
 public class DepartmentRepository {
     private EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("EmployeePU");

@@ -5,7 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "Employee")
@@ -21,12 +24,26 @@ public class Employee {
 	@Column(name = "salary")
 	private double salary;
 
+	@ManyToOne
+    @JoinColumn(name = "department_id", nullable = false)
+    private Department department;
+	
+	public Employee(String name, double salary, @NotNull Department department) {
+		this.name = name;
+		this.salary = salary;
+		this.department = department;
+	}
+
 	public Employee() {
 	}
 
-	public Employee(String name, double salary) {
-		this.name = name;
-		this.salary = salary;
+	@Override
+	public String toString() {
+		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+	}
+
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 	public int getId() {
@@ -53,8 +70,7 @@ public class Employee {
 		this.salary = salary;
 	}
 
-	@Override
-	public String toString() {
-		return "Employee [id=" + id + ", name=" + name + ", salary=" + salary + "]";
+	public Department getDepartment() {
+		return department;
 	}
 }

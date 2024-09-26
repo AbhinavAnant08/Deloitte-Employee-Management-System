@@ -9,12 +9,12 @@ public class EmployeeService {
 	private EmployeeRepository employeeRepository = new EmployeeRepository();
 
 	// Add a new employee with fields: id, name, salary, and department.
-	public Employee addEmployee(Employee employee) {
+	public boolean  addEmployee(Employee employee) {
 		System.out.println(employee.toString());
 		return employeeRepository.addEmployee(employee);
 	}
 
-	public Employee updateEmployee(int id, Employee employeeDetails) {
+	public boolean updateEmployee(int id, Employee employeeDetails) {
         System.out.println(employeeDetails.toString());
         return employeeRepository.updateEmployee(id, employeeDetails);
     }
