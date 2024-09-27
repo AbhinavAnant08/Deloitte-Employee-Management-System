@@ -1,9 +1,0 @@
-Employee resource
-
-
-
-
-department service
-department resource
-department repository
-department model
